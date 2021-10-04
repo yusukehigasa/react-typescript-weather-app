@@ -5,10 +5,10 @@ type ResultsPropsType = {
     temperature: string;
     conditionText: string;
     icon: string;
-  }
-}
+  };
+};
 
-const Results = ({results}: ResultsPropsType) => {
+const Results = ({ results }: ResultsPropsType) => {
   const { cityName, country, temperature, conditionText, icon } = results;
 
   return (
@@ -16,12 +16,12 @@ const Results = ({results}: ResultsPropsType) => {
       {cityName && <div>{cityName}</div>}
       {country && <div>{country}</div>}
       {temperature && <div>{temperature}</div>}
-      {conditionText &&
+      {conditionText && (
         <div>
-          <img src={icon} alt="icon" />
+          <img src={icon} alt='icon' />
           <span>{conditionText}</span>
         </div>
-      }
+      )}
     </>
   );
 };

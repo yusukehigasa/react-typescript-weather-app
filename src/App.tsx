@@ -12,45 +12,51 @@ type ResultsStateType = {
   temperature: string;
   conditionText: string;
   icon: string;
-}
+};
 
 function App() {
   const [loading, setLoading] = useState<boolean>(false);
-  const [city, setCity] = useState<string>("");
+  const [city, setCity] = useState<string>('');
   const [results, setResults] = useState<ResultsStateType>({
-    country: "",
-    cityName: "",
-    temperature: "",
-    conditionText: "",
-    icon: ""
+    country: '',
+    cityName: '',
+    temperature: '',
+    conditionText: '',
+    icon: '',
   });
 
   const getWeather = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    fetch(`https://api.weatherapi.com/v1/current.json?key=6a18cfd4070b463894372411210709&q=${city}&aqi=no`)
-      .then(res => res.json())
-      .then(data => {
+    fetch(
+      `https://api.weatherapi.com/v1/current.json?key=6a18cfd4070b463894372411210709&q=${city}&aqi=no`,
+    )
+      .then((res) => res.json())
+      .then((data) => {
         setResults({
           country: data.location.country,
           cityName: data.location.name,
           temperature: data.current.temp_c,
           conditionText: data.current.condition.text,
-          icon: data.current.condition.icon
-        })
-        setCity("");
+          icon: data.current.condition.icon,
+        });
+        setCity('');
         setLoading(false);
       })
-      .catch(err => alert("エラーが発生しました。ページをリロードして、もう一度トライしてください。"))
-  }
+      .catch((err) =>
+        alert(
+          `エラーが発生しました。ページをリロードして、もう一度トライしてください。${err}`,
+        ),
+      );
+  };
 
   return (
-    <div className="App">
+    <div className='App'>
       <Title />
       <Form setCity={setCity} city={city} getWeather={getWeather} />
       {loading ? <Loading /> : <Results results={results} />}
     </div>
   );
-};
+}
 
 export default App;
