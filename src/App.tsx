@@ -51,7 +51,7 @@ function App() {
   };
 
   return (
-    <div className='App'>
+    <div className='App' data-testid='wrapper'>
       <Title />
       <Form setCity={setCity} city={city} getWeather={getWeather} />
       {loading ? <Loading /> : <Results results={results} />}

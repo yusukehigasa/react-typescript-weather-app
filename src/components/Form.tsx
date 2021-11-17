@@ -14,7 +14,9 @@ const Form = ({ setCity, city, getWeather }: FormPropsType) => {
         value={city}
         onChange={(e) => setCity(e.target.value)}
       />
-      <button type='submit'>Get Weather</button>
+      <button type='submit' data-testid='button-submit'>
+        Get Weather
+      </button>
     </form>
   );
 };
